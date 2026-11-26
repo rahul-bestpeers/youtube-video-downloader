@@ -12,15 +12,19 @@ const fs = require("node:fs");
 // "https://www.youtube.com/playlist?list=PL1BztTYDF-QPfrzXwoC_6OSLs818uAqN2"
 // "https://www.youtube.com/playlist?list=PLRAV69dS1uWQGDQoBYMZWKjzuhCaOnBpa"
 // "https://www.youtube.com/playlist?list=PLBz0Y_rVMoZi4vEI7jecAXo5H4vHDa1kV"
-// Example: node main.js "https://www.youtube.com/playlist?list=abcdefghijklmnopqrstuvwxyz"
+// "https://www.youtube.com/watch?v=_XMwQ5X3llA&t=3s"
+// Example: node main.js "https://www.youtube.com/playlist?list=abcdefghijklmnopqrstuvwxyz" "foldername"
 const playlistOrVideoUrl = process.argv[2];
-
+const folder = process.argv[3];
+if (!folder) {
+  throw new Error("Please provide a folder name as the second argument.");
+}
 // Where downloaded videos will be stored.
 const outputDir = path.join(
   os.homedir(),
   "Videos",
   "YouTube-Playlist",
-  "angular"
+  folder
 );
 
 // Location of yt-dlp.exe downloaded on Windows.
